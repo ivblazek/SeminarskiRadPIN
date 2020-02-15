@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Servis.Models.ServiceOrder>
+@using Servis.Utility
+@{
+    ViewData["Title"] = "Servisni nalozi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="backgroundWhite">
+        <div class=" row">
+            <div class="col-6">
+                <h2>@ViewData["Title"]</h2>
+            </div>
+            <div class="col-6 text-right">
+                <a asp-action="NewServiceOrder" class="btn btn-dark">Unos naloga</a>
+            </div>
+        </div>
+        <hr />
+        <br />
+
+        <div>
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            @Html.DisplayNameFor(m => Model.FirstOrDefault().Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => Model.FirstOrDefault().Item)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => Model.FirstOrDefault().FaultDesc)
+                        </th>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(m => Model.FirstOrDefault().Status)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Item)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.FaultDesc)
+                            </td>
+
+                            <td>
+                                <a asp-action="ServiceDetails" asp-route-id="@item.Id">Detalji</a>
+                            </td>
+                            <td class="bg-@Html.DisplayFor(m => item.GetColor)">
+                                <a class="btn" asp-action="EditServiceOrder" asp-route-id="@item.Id">@Html.DisplayFor(m => item.StatusDescription)</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Nema unesenih radnih naloga</p>
+            }
+
+        </div>
+    </div>
+

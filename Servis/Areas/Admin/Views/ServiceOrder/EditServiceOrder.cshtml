@@ -1,0 +1,117 @@
+﻿@model Servis.Models.ViewModels.ServiceOrderVM
+@{
+    ViewData["Title"] = "Servisni nalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2>@ViewData["Title"] @Html.DisplayNameFor(m => Model.ServiceOrder.Id) @Html.DisplayFor(m => Model.ServiceOrder.Id)</h2>
+
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="ServiceList" class="btn btn-dark">Popis naloga</a>
+        </div>
+    </div>
+    <hr />
+    <div class="col-12 text-right">
+        <h4>
+            Zadnja izmjena: @Html.DisplayFor(m => Model.ServiceOrder.GetChangedDate)
+        </h4>
+    </div>
+    <form method="post" asp-action="EditServiceOrder">
+        <input type="hidden" asp-for="ServiceOrder.Id" />
+        <input type="hidden" asp-for="ServiceOrder.DateReceived" />
+        <div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.CustomerId" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <select id="ddlCustomerList" asp-for="ServiceOrder.CustomerId" asp-items="@(new SelectList(Model.CustomerList,"Id", "Name").OrderBy(x=> x.Text))" class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.Item" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ServiceOrder.Item" class="form-control" />
+                    <span asp-validation-for="ServiceOrder.Item" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.Model" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ServiceOrder.Model" class="form-control" />
+                    <span asp-validation-for="ServiceOrder.Model" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.SerialNumber" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ServiceOrder.SerialNumber" class="form-control" />
+                    <span asp-validation-for="ServiceOrder.SerialNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.FaultDesc" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ServiceOrder.FaultDesc" class="form-control" />
+                    <span asp-validation-for="ServiceOrder.FaultDesc" class="text-danger" v></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.RepairDesc" class="col-form-label">Opis servisa</label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ServiceOrder.RepairDesc" class="form-control" />
+                    <span asp-validation-for="ServiceOrder.RepairDesc" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.Status" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <select id="ddlCustomerList" asp-for="ServiceOrder.Status" asp-items="@(new SelectList(Model.StatusList, "Id", "Name"))" class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    <label asp-for="ServiceOrder.Notes" class="col-form-label">Bilješke</label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="ServiceOrder.Notes" class="form-control" />
+                    <span asp-validation-for="ServiceOrder.Notes" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-6 offset-2">
+                            <input type="submit" class="btn btn-success form-control" asp-route-id="@Model.ServiceOrder.Id" value="Ažuriraj nalog" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

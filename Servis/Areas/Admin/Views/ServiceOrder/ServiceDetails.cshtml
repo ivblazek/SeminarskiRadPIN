@@ -1,0 +1,125 @@
+﻿@model Servis.Models.ServiceOrder
+@{
+    ViewData["Title"] = "Detalji - Servisni nalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="backgroundWhite">
+        <div class="row">
+            <div class="col-6">
+                <h2>@ViewData["Title"] @Html.DisplayNameFor(m => Model.Id) @Html.DisplayFor(m => Model.Id)</h2>
+
+            </div>
+            <div class="col-6 text-right">
+                <a asp-action="ServiceList" class="btn btn-dark">Popis naloga</a>
+            </div>
+        </div>
+        <hr />
+        <br />
+        <div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.DateReceived)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.GetReceivedDate)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.DateLastChange)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.GetChangedDate)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.CustomerId)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.Customer.Name)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.Item)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.Item)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.Model)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.Model)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.SerialNumber)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.SerialNumber)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.FaultDesc)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.FaultDesc)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.RepairDesc)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.RepairDesc)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.Status)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.StatusDescription)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3 text-right">
+                    @Html.DisplayNameFor(m => Model.Notes)
+                </div>
+                <div class="col-5">
+                    @Html.DisplayFor(m => Model.Notes)
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-6 offset-2">
+                            <a class="btn btn-danger" asp-action="DeleteOrder" asp-route-id="@Model.Id">Izbriši nalog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

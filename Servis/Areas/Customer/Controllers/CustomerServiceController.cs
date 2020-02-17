@@ -27,7 +27,7 @@ namespace Servis.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            var order = await _db.ServiceOrder.Where(u => u.CustomerId == claim.Value).ToListAsync();
+            var order = await _db.ServiceOrder.Where(u => u.CustomerId == claim.Value).OrderByDescending(x => x.Id).ToListAsync();
             return View(order);
         }
     }

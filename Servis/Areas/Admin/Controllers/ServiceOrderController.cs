@@ -64,7 +64,7 @@ namespace Servis.Areas.Admin.Controllers
 
         public async Task<IActionResult> ServiceList()
         {
-            var order = await _db.ServiceOrder.ToListAsync();
+            var order = await _db.ServiceOrder.OrderByDescending(x=> x.Id).ToListAsync();
             return View(order);
         }
                 
